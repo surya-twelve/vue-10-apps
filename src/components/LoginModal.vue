@@ -71,6 +71,7 @@
                         </button>
                     </form>
                 </div>
+                <GoogleLogin @close-modal-from-google="closeModal" />
             </div>
         </div>
     </div>
@@ -78,7 +79,9 @@
 
 <script>
 import firebase from "../utilities/firebase";
+import GoogleLogin from "../components/Login/GoogleLogin";
 export default {
+    components: {GoogleLogin},
     data() {
         return {
             form: {
@@ -116,5 +119,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

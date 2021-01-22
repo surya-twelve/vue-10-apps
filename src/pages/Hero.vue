@@ -49,41 +49,46 @@
 </template>
 
 <script>
+import { computed, onMounted, ref } from "vue";
 export default {
-    data() {
-        return {
-            newHero: "",
-            marvelHero: [
-                { name: "Captain America" },
-                { name: "Iron Man" },
-                { name: "Hulk" },
-                { name: "Black Widow" },
-            ],
-        };
-    },
+    setup() {
+        const heroRef = ref("");
+        const newHero = ref("");
+        const marvelHero = ref([
+            { name: "Captain America" },
+            { name: "Iron Man" },
+            { name: "Hulk" },
+            { name: "Black Widow" },
+        ]);
 
-    mounted() {
-        this.$refs.heroRef.focus();
-    },
+        onMounted(() => {
+            heroRef.value.focus();
+        });
 
-    methods: {
-        addHero() {
-            if (this.newHero !== "") {
+        const heroCount = computed({
+            get: () => marvelHero.value.length,
+        });
+
+        function addHero() {
+            if (newHero.value !== "") {
                 // check if the input text is not empty
-                this.marvelHero.unshift({ name: this.newHero }); // push to objek data marvelHero at the start
-                this.newHero = ""; // clear the input text after submit
+                marvelHero.value.unshift({ name: newHero.value }); // push to objek data marvelHero at the start
+                newHero.value = ""; // clear the input text after submit
             }
-        },
+        }
 
-        removeHero(index) {
-            this.marvelHero = this.marvelHero.filter((hero, i) => i != index);
-        },
-    },
+        function removeHero(index) {
+            marvelHero.value = marvelHero.value.filter((hero, i) => i != index);
+        }
 
-    computed: {
-        heroCount() {
-            return this.marvelHero.length;
-        },
+        return {
+            newHero,
+            marvelHero,
+            heroRef,
+            heroCount,
+            addHero,
+            removeHero,
+        };
     },
 };
 </script>

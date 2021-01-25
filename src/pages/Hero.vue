@@ -70,9 +70,8 @@ export default {
         });
 
         function addHero() {
-            if (newHero.value !== "") {
-                // check if the input text is not empty
-                marvelHero.value.unshift({ name: newHero.value }); // push to objek data marvelHero at the start
+            if (newHero.value !== "") { // check if the input text is not empty
+                marvelHero.value.unshift({ name: newHero.value }); // push to marvekHero object with first order use unshift function 
                 newHero.value = ""; // clear the input text after submit
             }
         }

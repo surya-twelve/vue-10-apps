@@ -5,6 +5,8 @@ import Calendar from "./pages/Calendar";
 import Markdown from "./pages/Markdown";
 import Slider from "./pages/Slider";
 import Calculator from "./pages/Calculator";
+import ReusableModal from "./pages/ReusableModal";
+import Chat from "./pages/Chat";
 
 const routes = [
   { path: "/", component: Home },
@@ -13,6 +15,8 @@ const routes = [
   { path: "/markdown", component: Markdown },
   { path: "/slider", component: Slider },
   { path: "/calculator", component: Calculator },
+  { path: "/reusable-modal", component: ReusableModal },
+  { path: "/realtime-chat", component: Chat },
 ];
 
 const router = createRouter({

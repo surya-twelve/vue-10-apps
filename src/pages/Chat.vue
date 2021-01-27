@@ -8,14 +8,12 @@
                         v-for="chat in state.chats"
                         :key="chat.message"
                         class="w-full"
-                        :class="
-                            chat.userId === state.userId ? 'text-right' : ''
-                        "
+                        :class="chat.userId === userId ? 'text-right' : ''"
                     >
                         <span
                             class="p-2 rounded-lg text-white shadow"
                             :class="
-                                chat.userId === state.userId
+                                chat.userId === userId
                                     ? 'bg-green-500'
                                     : 'bg-blue-500'
                             "
@@ -38,16 +36,20 @@
 </template>
 
 <script>
-import { onMounted, reactive, ref } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 import firebase from "../utilities/firebase";
+import { useStore } from "vuex";
 export default {
     setup() {
         const focusRef = ref("");
         const state = reactive({
             chats: {},
             message: "",
-            userId: null,
         });
+
+        // get user data id from store (vuex)
+        const store = useStore();
+        const userId = computed(() => store.state.authUser.uid);
 
         onMounted(async () => {
             // focus input text
@@ -67,23 +69,20 @@ export default {
                 .on("value", (snapshot) => {
                     state.chats = snapshot.val();
                 });
-
-            // get id user login
-            state.userId = await firebase.auth().currentUser.uid;
         });
 
         // function for push/add message to firebase realtime database
         const addMessage = async () => {
             const newChat = await firebase.database().ref("chats");
             newChat.push().set({
-                userId: state.userId,
+                userId: userId.value,
                 message: state.message,
             });
             // clear text field after done push message
             state.message = "";
         };
 
-        return { state, addMessage, focusRef };
+        return { state, addMessage, focusRef, userId };
     },
 };
 </script>

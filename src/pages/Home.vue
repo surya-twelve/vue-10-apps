@@ -1,9 +1,7 @@
 <template>
-  <h1>Home page</h1>
+    <h1>Home page</h1>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>

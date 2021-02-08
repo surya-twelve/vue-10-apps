@@ -9,6 +9,7 @@ import Calculator from "./pages/Calculator";
 import ReusableModal from "./pages/ReusableModal";
 import Chat from "./pages/Chat";
 import Crud from "./pages/Crud";
+import Tensorflow from "./pages/Tensorflow";
 
 const routes = [
   { path: "/", component: Home },
@@ -24,6 +25,7 @@ const routes = [
     meta: { middleware: "auth" },
   },
   { path: "/crud-app", component: Crud },
+  { path: "/tensorflow", component: Tensorflow },
 ];
 
 const router = createRouter({

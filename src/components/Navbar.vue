@@ -26,6 +26,7 @@ export default {
                 { title: "Modal", to: "/reusable-modal" },
                 { title: "Chat", to: "/realtime-chat" },
                 { title: "Crud", to: "/crud-app" },
+                { title: "Tensorflow", to: "/tensorflow" },
             ],
         };
     },

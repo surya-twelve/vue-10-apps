@@ -7,7 +7,7 @@
         <div class="flex h-full">
             <div class="z-30 m-auto bg-white rounded-md shadow-lg p-5 w-1/3">
                 <div class="flex flex-col">
-                    <h1 class="text-2xl">
+                    <h1 class="text-2xl text-center">
                         <slot name="title"></slot>
                     </h1>
                     <main>
